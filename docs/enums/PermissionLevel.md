@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[index.ts:307](https://github.com/undaku/js-sdk/blob/2f265a4/src/index.ts#L307)
+[index.ts:307](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L307)
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 #### Defined in
 
-[index.ts:304](https://github.com/undaku/js-sdk/blob/2f265a4/src/index.ts#L304)
+[index.ts:304](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L304)
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 #### Defined in
 
-[index.ts:305](https://github.com/undaku/js-sdk/blob/2f265a4/src/index.ts#L305)
+[index.ts:305](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L305)
 
 ___
 
@@ -49,4 +49,4 @@ ___
 
 #### Defined in
 
-[index.ts:306](https://github.com/undaku/js-sdk/blob/2f265a4/src/index.ts#L306)
+[index.ts:306](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L306)

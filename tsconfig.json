@@ -11,10 +11,10 @@
     "isolatedModules": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-
+    "strictNullChecks": false,
+    "noImplicitAny": false,
     // Strictness and quality settings.
     "alwaysStrict": true,
-    "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
     "importsNotUsedAsValues": "error",
     "noFallthroughCasesInSwitch": true,

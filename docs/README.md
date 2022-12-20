@@ -16,6 +16,7 @@
 ### Interfaces
 
 - [BaseDto](interfaces/BaseDto.md)
+- [KeyValuePair](interfaces/KeyValuePair.md)
 - [Record](interfaces/Record.md)
 - [Reference](interfaces/Reference.md)
 - [SdkResponse](interfaces/SdkResponse.md)

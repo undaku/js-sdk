@@ -171,7 +171,7 @@ ___
 
 ### getReferences
 
-▸ **getReferences**(`query`): `Promise`<{ `data`: `any` ; `error`: ``null`` = null } \| { `data`: `undefined` ; `error`: `unknown`  }\>
+▸ **getReferences**(`query`): `Promise`<{ `data`: `any` ; `error`: `any` = null } \| { `data`: `undefined` ; `error`: `unknown`  }\>
 
 #### Parameters
 
@@ -187,7 +187,7 @@ ___
 
 #### Returns
 
-`Promise`<{ `data`: `any` ; `error`: ``null`` = null } \| { `data`: `undefined` ; `error`: `unknown`  }\>
+`Promise`<{ `data`: `any` ; `error`: `any` = null } \| { `data`: `undefined` ; `error`: `unknown`  }\>
 
 ___
 

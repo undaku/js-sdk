@@ -318,3 +318,19 @@ export interface SubInstancesInfoModel {
   appId: string;
   appSecret: string;
 }
+export interface KeyValuePair<Tvalue> {
+  [key: string]: Tvalue;
+}
+
+export interface Record extends KeyValuePair<any> {
+  id?: string;
+  form: string;
+  currentLayoutId?: string;
+  currentWFNodeId?: string;
+  workflowInProgress?: boolean;
+  actions?: string[];
+  permission?: PermissionLevel;
+  referencesToAdd: Reference[];
+  referencesToRemove: string[];
+  referenceId?: string;
+}

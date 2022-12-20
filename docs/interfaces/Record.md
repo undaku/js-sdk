@@ -2,6 +2,12 @@
 
 # Interface: Record
 
+## Hierarchy
+
+- [`KeyValuePair`](KeyValuePair.md)<`any`\>
+
+  ↳ **`Record`**
+
 ## Indexable
 
 ▪ [key: `string`]: `any`
@@ -29,7 +35,9 @@
 
 #### Defined in
 
-[index.ts:276](https://github.com/undaku/js-sdk/blob/2f265a4/src/index.ts#L276)
+[index.ts:276](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L276)
+
+[index.ts:331](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L331)
 
 ___
 
@@ -39,7 +47,9 @@ ___
 
 #### Defined in
 
-[index.ts:273](https://github.com/undaku/js-sdk/blob/2f265a4/src/index.ts#L273)
+[index.ts:273](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L273)
+
+[index.ts:328](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L328)
 
 ___
 
@@ -49,7 +59,9 @@ ___
 
 #### Defined in
 
-[index.ts:274](https://github.com/undaku/js-sdk/blob/2f265a4/src/index.ts#L274)
+[index.ts:274](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L274)
+
+[index.ts:329](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L329)
 
 ___
 
@@ -59,7 +71,9 @@ ___
 
 #### Defined in
 
-[index.ts:272](https://github.com/undaku/js-sdk/blob/2f265a4/src/index.ts#L272)
+[index.ts:272](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L272)
+
+[index.ts:327](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L327)
 
 ___
 
@@ -69,7 +83,9 @@ ___
 
 #### Defined in
 
-[index.ts:271](https://github.com/undaku/js-sdk/blob/2f265a4/src/index.ts#L271)
+[index.ts:271](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L271)
+
+[index.ts:326](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L326)
 
 ___
 
@@ -79,7 +95,9 @@ ___
 
 #### Defined in
 
-[index.ts:277](https://github.com/undaku/js-sdk/blob/2f265a4/src/index.ts#L277)
+[index.ts:277](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L277)
+
+[index.ts:332](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L332)
 
 ___
 
@@ -89,7 +107,9 @@ ___
 
 #### Defined in
 
-[index.ts:280](https://github.com/undaku/js-sdk/blob/2f265a4/src/index.ts#L280)
+[index.ts:280](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L280)
+
+[index.ts:335](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L335)
 
 ___
 
@@ -99,7 +119,9 @@ ___
 
 #### Defined in
 
-[index.ts:278](https://github.com/undaku/js-sdk/blob/2f265a4/src/index.ts#L278)
+[index.ts:278](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L278)
+
+[index.ts:333](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L333)
 
 ___
 
@@ -109,7 +131,9 @@ ___
 
 #### Defined in
 
-[index.ts:279](https://github.com/undaku/js-sdk/blob/2f265a4/src/index.ts#L279)
+[index.ts:279](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L279)
+
+[index.ts:334](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L334)
 
 ___
 
@@ -119,4 +143,6 @@ ___
 
 #### Defined in
 
-[index.ts:275](https://github.com/undaku/js-sdk/blob/2f265a4/src/index.ts#L275)
+[index.ts:275](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L275)
+
+[index.ts:330](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L330)
