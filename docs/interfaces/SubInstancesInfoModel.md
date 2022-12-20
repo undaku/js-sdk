@@ -18,7 +18,7 @@
 
 #### Defined in
 
-index.ts:318
+[index.ts:318](https://github.com/undaku/js-sdk/blob/2f265a4/src/index.ts#L318)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-index.ts:319
+[index.ts:319](https://github.com/undaku/js-sdk/blob/2f265a4/src/index.ts#L319)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-index.ts:317
+[index.ts:317](https://github.com/undaku/js-sdk/blob/2f265a4/src/index.ts#L317)

@@ -3,7 +3,7 @@ Undaku JS SDK will help javascript developers to communicate with undaku-api wit
 
 # Getting Started
 1.	Installation process
-    - npm install @undaku/jssdk
+    - npm install undaku-js-sdk
 2.	Software dependencies
     - axios
 3.	Latest releases

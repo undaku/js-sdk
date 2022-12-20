@@ -1,7 +1,7 @@
 /*!
- * @undaku/js-sdk v1.0.0
- * (c) undaku dev team
- * Released under the undefined License.
+ * undaku-js-sdk v1.0.0
+ * (c) undefined
+ * Released under the ISC License.
  */
 
 import axios from 'axios';

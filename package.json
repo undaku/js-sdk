@@ -1,7 +1,7 @@
 {
-  "name": "@undaku/js-sdk",
+  "name": "undaku-js-sdk",
   "version": "1.0.0",
-  "description": "",
+  "description": "Undaku JS SDK will help javascript developers to communicate with undaku-api with the help of predefines methods",
   "cdn": "dist/index.umd.js",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
@@ -9,11 +9,7 @@
   "module": "dist/index.esm.js",
   "jsdelivr": "dist/index.umd.js",
   "umd:main": "dist/index.umd.js",
-  "author": {
-    "name": "undaku dev team",
-    "email": "dev@undaku.com",
-    "url": "https://www.undaku.com"
-  },
+  "author": "undaku dev team <dev@undaku.com> (https://www.undaku.com)",
   "exports": {
     ".": [
       {
@@ -23,7 +19,7 @@
       },
       "./dist/index.js"
     ]
-  }, 
+  },
   "dependencies": {
     "axios": "^0.26.1"
   },
@@ -55,5 +51,16 @@
     "build": "rollup --config ./rollup.config.js",
     "prepublishOnly": "npm run doc && npm run lint && npm run test && npm run build"
   },
-  "homepage": "https://www.undaku.com"
+  "homepage": "https://www.undaku.com",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/undaku/js-sdk.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/undaku/js-sdk/issues"
+  }
 }
