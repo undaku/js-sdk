@@ -28,3 +28,4 @@ pnpmfile.js
 # Log files.
 *.log
 *.log.*
+dist/
