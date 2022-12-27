@@ -4,7 +4,7 @@ export class UndakuSdk {
   constructor(
     private instance: string,
     private token: string = '',
-    private baseUrl: string = 'http://api/undaku.com',
+    private baseUrl: string = 'http://api.undaku.com',
     private appId?: string,
     private appSecret?: string,
     private username?: string,
@@ -128,15 +128,80 @@ export class UndakuSdk {
   ): Promise<SdkResponse<string>> {
     let response = null;
     try {
+      let refResult = await this.createReferenceRecords(record);
       const url = `/api/record/${form}`;
+      delete record.referenceRecordsToAdd;
+      delete record.reverseReferenceRecordsToAdd;
       response = await axios.post(url, record, {
         headers: this.getHeaders({}),
         baseURL: this.baseUrl,
       });
-      return { data: response.data.createdId, error: null };
+      let message = refResult.failedCount > 0 ? `Failed to save ${refResult.failedCount} child records.` : null;
+      return { data: response.data.createdId, error: null, message };
     } catch (error) {
       return { error };
     }
+  }
+
+  private async createReferenceRecords(record: Record) {
+    let result = {successCount: 0, failedCount: 0};
+    if(record && record.referenceRecordsToAdd) {
+      for (const fieldAlias in record.referenceRecordsToAdd) {
+        if (record.referenceRecordsToAdd.hasOwnProperty(fieldAlias)) {
+          const refRecords = record.referenceRecordsToAdd[fieldAlias];
+          for (let i = 0; i < refRecords.length; i++) {
+            const refRecord = refRecords[i];
+            if(!refRecord) continue;
+            let res = await this.createRecord(refRecord.form, refRecord);
+            if(res && !res.error && res.data) {
+              const createdId = res.data;
+              result.successCount++;
+              let reference: Reference = {
+                referencingFormAlias: record.form,
+                referencingFieldAlias: fieldAlias,
+                referencingRecordId: null,
+                referencedFormAlias: refRecord.form,
+                referencedFieldAlias: `${record.form}${fieldAlias}`,
+                referencedRecordId: createdId
+              };
+              if(!record.referencesToAdd) record.referencesToAdd = [];
+              record.referencesToAdd.push(reference);
+            } else{
+              result.failedCount++;
+            }
+          }
+        }
+      }
+    }
+    if(record && record.reverseReferenceRecordsToAdd) {
+      for (const fieldAlias in record.reverseReferenceRecordsToAdd) {
+        if (record.reverseReferenceRecordsToAdd.hasOwnProperty(fieldAlias)) {
+          const refRecords = record.reverseReferenceRecordsToAdd[fieldAlias];
+          for (let i = 0; i < refRecords.length; i++) {
+            const refRecord = refRecords[i];
+            if(!refRecord) continue;
+            let res = await this.createRecord(refRecord.form, refRecord);
+            if(res && !res.error && res.data) {
+              const createdId = res.data;
+              result.successCount++;
+              let reference: Reference = {
+                referencingFormAlias: refRecord.form,
+                referencingFieldAlias: fieldAlias.replace(refRecord.form, ''),
+                referencingRecordId: createdId,
+                referencedFormAlias: record.form,
+                referencedFieldAlias: fieldAlias,
+                referencedRecordId: null
+              };
+              if(!record.referencesToAdd) record.referencesToAdd = [];
+              record.referencesToAdd.push(reference);
+            } else{
+              result.failedCount++;
+            }
+          }
+        }
+      }
+    }
+    return result;
   }
 
   async getRecord(
@@ -149,6 +214,24 @@ export class UndakuSdk {
       response = await axios.get(url, {
         headers: this.getHeaders({}),
         baseURL: this.baseUrl,
+      });
+      return { data: response.data, error: null };
+    } catch (error) {
+      return { error };
+    }
+  }
+
+  async getRecordsByModel(
+    form: string,
+    model: Record,
+  ): Promise<SdkResponse<Record[]>> {
+    let response = null;
+    try {
+      const url = `/api/record/${form}`;
+      response = await axios.get(url, {
+        headers: this.getHeaders({}),
+        baseURL: this.baseUrl,
+        data: model
       });
       return { data: response.data, error: null };
     } catch (error) {
@@ -195,12 +278,16 @@ export class UndakuSdk {
       return { error: 'Record Id Is Missing' };
     }
     try {
+      let refResult = await this.createReferenceRecords(record);
+      delete record.referenceRecordsToAdd;
+      delete record.reverseReferenceRecordsToAdd;
       const url = `/api/record/${form}/${record.id}`;
       response = await axios.put(url, record, {
         headers: this.getHeaders({}),
         baseURL: this.baseUrl,
       });
-      return { data: response.data.createdId, error: null };
+      let message = refResult.failedCount > 0 ? `Failed to save ${refResult.failedCount} child records.` : null;
+      return { data: response.data, error: null, message };
     } catch (error) {
       return { error };
     }
@@ -277,6 +364,8 @@ export interface Record {
   permission?: PermissionLevel;
   referencesToAdd: Reference[];
   referencesToRemove: string[];
+  referenceRecordsToAdd?: {[fieldAlias: string]: Record[]};
+  reverseReferenceRecordsToAdd?: {[fieldAlias: string]: Record[]};
   referenceId?: string;
   [key: string]: any;
 }
