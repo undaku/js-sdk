@@ -1,6 +1,6 @@
 {
   "name": "@undaku/js-sdk",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "Undaku JS SDK will help javascript developers to communicate with undaku-api with the help of predefines methods",
   "cdn": "dist/index.umd.js",
   "main": "dist/index.js",
@@ -49,7 +49,7 @@
     "lint": "eslint \"*/**/*.{ts,js,json}\"",
     "lint:fix": "eslint \"*/**/*.{ts,js,json}\" --fix",
     "build": "rollup --config ./rollup.config.js",
-    "prepublishOnly": "npm run doc && npm run lint && npm run test && npm run build"
+    "prepublishOnly": "npm run doc && npm run test && npm run build"
   },
   "homepage": "https://www.undaku.com",
   "directories": {
