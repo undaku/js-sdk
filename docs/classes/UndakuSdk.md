@@ -12,12 +12,15 @@
 
 - [checkIfRecordExist](UndakuSdk.md#checkifrecordexist)
 - [createRecord](UndakuSdk.md#createrecord)
+- [createReferenceRecord](UndakuSdk.md#createreferencerecord)
+- [createReferenceRecords](UndakuSdk.md#createreferencerecords)
 - [deleteRecord](UndakuSdk.md#deleterecord)
 - [fetchSubInstances](UndakuSdk.md#fetchsubinstances)
 - [fetchToken](UndakuSdk.md#fetchtoken)
 - [getHeaders](UndakuSdk.md#getheaders)
 - [getRecord](UndakuSdk.md#getrecord)
 - [getRecordCount](UndakuSdk.md#getrecordcount)
+- [getRecordsByModel](UndakuSdk.md#getrecordsbymodel)
 - [getReferences](UndakuSdk.md#getreferences)
 - [getToken](UndakuSdk.md#gettoken)
 - [login](UndakuSdk.md#login)
@@ -37,7 +40,7 @@
 | :------ | :------ | :------ |
 | `instance` | `string` | `undefined` |
 | `token` | `string` | `''` |
-| `baseUrl` | `string` | `'http://api/undaku.com'` |
+| `baseUrl` | `string` | `'http://api.undaku.com'` |
 | `appId?` | `string` | `undefined` |
 | `appSecret?` | `string` | `undefined` |
 | `username?` | `string` | `undefined` |
@@ -76,6 +79,44 @@ ___
 #### Returns
 
 `Promise`<[`SdkResponse`](../interfaces/SdkResponse.md)<`string`\>\>
+
+___
+
+### createReferenceRecord
+
+▸ `Private` **createReferenceRecord**(`fieldAlias`, `refRecord`, `isReverseRef`, `record`, `result`): `Promise`<`void`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `fieldAlias` | `string` |
+| `refRecord` | [`Record`](../interfaces/Record.md) |
+| `isReverseRef` | `boolean` |
+| `record` | [`Record`](../interfaces/Record.md) |
+| `result` | `Object` |
+| `result.failedCount` | `number` |
+| `result.successCount` | `number` |
+
+#### Returns
+
+`Promise`<`void`\>
+
+___
+
+### createReferenceRecords
+
+▸ `Private` **createReferenceRecords**(`record`): `Promise`<{ `failedCount`: `number` = 0; `successCount`: `number` = 0 }\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `record` | [`Record`](../interfaces/Record.md) |
+
+#### Returns
+
+`Promise`<{ `failedCount`: `number` = 0; `successCount`: `number` = 0 }\>
 
 ___
 
@@ -166,6 +207,23 @@ ___
 #### Returns
 
 `Promise`<`number`\>
+
+___
+
+### getRecordsByModel
+
+▸ **getRecordsByModel**(`form`, `model`): `Promise`<[`SdkResponse`](../interfaces/SdkResponse.md)<[`Record`](../interfaces/Record.md)[]\>\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `form` | `string` |
+| `model` | [`Record`](../interfaces/Record.md) |
+
+#### Returns
+
+`Promise`<[`SdkResponse`](../interfaces/SdkResponse.md)<[`Record`](../interfaces/Record.md)[]\>\>
 
 ___
 

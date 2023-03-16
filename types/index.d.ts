@@ -14,6 +14,7 @@ export declare class UndakuSdk {
     search(form: string, query: any, reportId?: string): Promise<SdkResponse<any[]>>;
     createRecord(form: string, record: Record): Promise<SdkResponse<string>>;
     private createReferenceRecords;
+    private createReferenceRecord;
     getRecord(form: string, recordId: string): Promise<SdkResponse<Record>>;
     getRecordsByModel(form: string, model: Record): Promise<SdkResponse<Record[]>>;
     deleteRecord(form: string, recordId: string): Promise<SdkResponse<Record>>;

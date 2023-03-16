@@ -23,8 +23,10 @@
 - [id](Record.md#id)
 - [permission](Record.md#permission)
 - [referenceId](Record.md#referenceid)
+- [referenceRecordsToAdd](Record.md#referencerecordstoadd)
 - [referencesToAdd](Record.md#referencestoadd)
 - [referencesToRemove](Record.md#referencestoremove)
+- [reverseReferenceRecordsToAdd](Record.md#reversereferencerecordstoadd)
 - [workflowInProgress](Record.md#workflowinprogress)
 
 ## Properties
@@ -35,9 +37,9 @@
 
 #### Defined in
 
-[index.ts:276](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L276)
+[index.ts:389](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L389)
 
-[index.ts:331](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L331)
+[index.ts:446](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L446)
 
 ___
 
@@ -47,9 +49,9 @@ ___
 
 #### Defined in
 
-[index.ts:273](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L273)
+[index.ts:386](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L386)
 
-[index.ts:328](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L328)
+[index.ts:443](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L443)
 
 ___
 
@@ -59,9 +61,9 @@ ___
 
 #### Defined in
 
-[index.ts:274](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L274)
+[index.ts:387](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L387)
 
-[index.ts:329](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L329)
+[index.ts:444](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L444)
 
 ___
 
@@ -71,9 +73,9 @@ ___
 
 #### Defined in
 
-[index.ts:272](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L272)
+[index.ts:385](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L385)
 
-[index.ts:327](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L327)
+[index.ts:442](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L442)
 
 ___
 
@@ -83,9 +85,9 @@ ___
 
 #### Defined in
 
-[index.ts:271](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L271)
+[index.ts:384](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L384)
 
-[index.ts:326](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L326)
+[index.ts:441](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L441)
 
 ___
 
@@ -95,9 +97,9 @@ ___
 
 #### Defined in
 
-[index.ts:277](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L277)
+[index.ts:390](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L390)
 
-[index.ts:332](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L332)
+[index.ts:447](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L447)
 
 ___
 
@@ -107,9 +109,23 @@ ___
 
 #### Defined in
 
-[index.ts:280](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L280)
+[index.ts:395](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L395)
 
-[index.ts:335](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L335)
+[index.ts:450](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L450)
+
+___
+
+### referenceRecordsToAdd
+
+• `Optional` **referenceRecordsToAdd**: `Object`
+
+#### Index signature
+
+▪ [fieldAlias: `string`]: [`Record`](Record.md)[]
+
+#### Defined in
+
+[index.ts:393](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L393)
 
 ___
 
@@ -119,9 +135,9 @@ ___
 
 #### Defined in
 
-[index.ts:278](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L278)
+[index.ts:391](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L391)
 
-[index.ts:333](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L333)
+[index.ts:448](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L448)
 
 ___
 
@@ -131,9 +147,23 @@ ___
 
 #### Defined in
 
-[index.ts:279](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L279)
+[index.ts:392](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L392)
 
-[index.ts:334](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L334)
+[index.ts:449](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L449)
+
+___
+
+### reverseReferenceRecordsToAdd
+
+• `Optional` **reverseReferenceRecordsToAdd**: `Object`
+
+#### Index signature
+
+▪ [fieldAlias: `string`]: [`Record`](Record.md)[]
+
+#### Defined in
+
+[index.ts:394](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L394)
 
 ___
 
@@ -143,6 +173,6 @@ ___
 
 #### Defined in
 
-[index.ts:275](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L275)
+[index.ts:388](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L388)
 
-[index.ts:330](https://github.com/undaku/js-sdk/blob/616e62b/src/index.ts#L330)
+[index.ts:445](https://github.com/undaku/js-sdk/blob/08957cb/src/index.ts#L445)

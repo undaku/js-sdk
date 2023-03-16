@@ -124,11 +124,11 @@ export class UndakuSdk {
 
   async createRecord(
     form: string,
-    record: Record,
+    record: Record
   ): Promise<SdkResponse<string>> {
     let response = null;
     try {
-      let refResult = await this.createReferenceRecords(record);
+      const refResult = await this.createReferenceRecords(record);
       const url = `/api/record/${form}`;
       delete record.referenceRecordsToAdd;
       delete record.reverseReferenceRecordsToAdd;
@@ -136,7 +136,10 @@ export class UndakuSdk {
         headers: this.getHeaders({}),
         baseURL: this.baseUrl,
       });
-      let message = refResult.failedCount > 0 ? `Failed to save ${refResult.failedCount} child records.` : null;
+      const message =
+        refResult.failedCount > 0
+          ? `Failed to save ${refResult.failedCount} child records.`
+          : null;
       return { data: response.data.createdId, error: null, message };
     } catch (error) {
       return { error };
@@ -144,64 +147,84 @@ export class UndakuSdk {
   }
 
   private async createReferenceRecords(record: Record) {
-    let result = {successCount: 0, failedCount: 0};
-    if(record && record.referenceRecordsToAdd) {
+    const result = { successCount: 0, failedCount: 0 };
+    let createTasks: Promise<void>[] = [];
+    if (record && record.referenceRecordsToAdd) {
       for (const fieldAlias in record.referenceRecordsToAdd) {
-        if (record.referenceRecordsToAdd.hasOwnProperty(fieldAlias)) {
+        if (
+          Object.prototype.hasOwnProperty.call(
+            record.referenceRecordsToAdd,
+            fieldAlias,
+          )
+        ) {
           const refRecords = record.referenceRecordsToAdd[fieldAlias];
           for (let i = 0; i < refRecords.length; i++) {
             const refRecord = refRecords[i];
-            if(!refRecord) continue;
-            let res = await this.createRecord(refRecord.form, refRecord);
-            if(res && !res.error && res.data) {
-              const createdId = res.data;
-              result.successCount++;
-              let reference: Reference = {
-                referencingFormAlias: record.form,
-                referencingFieldAlias: fieldAlias,
-                referencingRecordId: null,
-                referencedFormAlias: refRecord.form,
-                referencedFieldAlias: `${record.form}${fieldAlias}`,
-                referencedRecordId: createdId
-              };
-              if(!record.referencesToAdd) record.referencesToAdd = [];
-              record.referencesToAdd.push(reference);
-            } else{
-              result.failedCount++;
-            }
+            if (!refRecord) continue;
+            createTasks.push(this.createReferenceRecord(fieldAlias, refRecord, false, record, result));
           }
         }
       }
     }
-    if(record && record.reverseReferenceRecordsToAdd) {
+    if (record && record.reverseReferenceRecordsToAdd) {
       for (const fieldAlias in record.reverseReferenceRecordsToAdd) {
-        if (record.reverseReferenceRecordsToAdd.hasOwnProperty(fieldAlias)) {
+        if (
+          Object.prototype.hasOwnProperty.call(
+            record.reverseReferenceRecordsToAdd,
+            fieldAlias,
+          )
+        ) {
           const refRecords = record.reverseReferenceRecordsToAdd[fieldAlias];
           for (let i = 0; i < refRecords.length; i++) {
             const refRecord = refRecords[i];
-            if(!refRecord) continue;
-            let res = await this.createRecord(refRecord.form, refRecord);
-            if(res && !res.error && res.data) {
-              const createdId = res.data;
-              result.successCount++;
-              let reference: Reference = {
-                referencingFormAlias: refRecord.form,
-                referencingFieldAlias: fieldAlias.replace(refRecord.form, ''),
-                referencingRecordId: createdId,
-                referencedFormAlias: record.form,
-                referencedFieldAlias: fieldAlias,
-                referencedRecordId: null
-              };
-              if(!record.referencesToAdd) record.referencesToAdd = [];
-              record.referencesToAdd.push(reference);
-            } else{
-              result.failedCount++;
-            }
+            if (!refRecord) continue;
+            createTasks.push(this.createReferenceRecord(fieldAlias, refRecord, true, record, result))
           }
         }
       }
     }
+    await Promise.all(createTasks);
     return result;
+  }
+
+  private async createReferenceRecord(fieldAlias: string, refRecord: Record, isReverseRef: boolean, record: Record, result: { successCount: number, failedCount: number }) {
+    if (!isReverseRef) {
+      const res = await this.createRecord(refRecord.form, refRecord);
+      if (res && !res.error && res.data) {
+        const createdId = res.data;
+        result.successCount++;
+        const reference: Reference = {
+          referencingFormAlias: record.form,
+          referencingFieldAlias: fieldAlias,
+          referencingRecordId: null,
+          referencedFormAlias: refRecord.form,
+          referencedFieldAlias: `${record.form}${fieldAlias}`,
+          referencedRecordId: createdId,
+        };
+        if (!record.referencesToAdd) record.referencesToAdd = [];
+        record.referencesToAdd.push(reference);
+      } else {
+        result.failedCount++;
+      }
+    } else {
+      const res = await this.createRecord(refRecord.form, refRecord);
+      if (res && !res.error && res.data) {
+        const createdId = res.data;
+        result.successCount++;
+        const reference: Reference = {
+          referencingFormAlias: refRecord.form,
+          referencingFieldAlias: fieldAlias.replace(refRecord.form, ''),
+          referencingRecordId: createdId,
+          referencedFormAlias: record.form,
+          referencedFieldAlias: fieldAlias,
+          referencedRecordId: null,
+        };
+        if (!record.referencesToAdd) record.referencesToAdd = [];
+        record.referencesToAdd.push(reference);
+      } else {
+        result.failedCount++;
+      }
+    }
   }
 
   async getRecord(
@@ -231,7 +254,7 @@ export class UndakuSdk {
       response = await axios.get(url, {
         headers: this.getHeaders({}),
         baseURL: this.baseUrl,
-        data: model
+        data: model,
       });
       return { data: response.data, error: null };
     } catch (error) {
@@ -278,7 +301,7 @@ export class UndakuSdk {
       return { error: 'Record Id Is Missing' };
     }
     try {
-      let refResult = await this.createReferenceRecords(record);
+      const refResult = await this.createReferenceRecords(record);
       delete record.referenceRecordsToAdd;
       delete record.reverseReferenceRecordsToAdd;
       const url = `/api/record/${form}/${record.id}`;
@@ -286,7 +309,10 @@ export class UndakuSdk {
         headers: this.getHeaders({}),
         baseURL: this.baseUrl,
       });
-      let message = refResult.failedCount > 0 ? `Failed to save ${refResult.failedCount} child records.` : null;
+      const message =
+        refResult.failedCount > 0
+          ? `Failed to save ${refResult.failedCount} child records.`
+          : null;
       return { data: response.data, error: null, message };
     } catch (error) {
       return { error };
@@ -364,8 +390,8 @@ export interface Record {
   permission?: PermissionLevel;
   referencesToAdd: Reference[];
   referencesToRemove: string[];
-  referenceRecordsToAdd?: {[fieldAlias: string]: Record[]};
-  reverseReferenceRecordsToAdd?: {[fieldAlias: string]: Record[]};
+  referenceRecordsToAdd?: { [fieldAlias: string]: Record[] };
+  reverseReferenceRecordsToAdd?: { [fieldAlias: string]: Record[] };
   referenceId?: string;
   [key: string]: any;
 }
